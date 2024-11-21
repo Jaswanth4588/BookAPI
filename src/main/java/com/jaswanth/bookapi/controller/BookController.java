@@ -56,6 +56,13 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @PostMapping("/book/save/{id}")
+    public String saveBooks(Book book, RedirectAttributes ra) {
+        bookService.save(book);
+        ra.addFlashAttribute("message", "The book has been saved successfully.");
+        return "redirect:/books";
+    }
+
     @GetMapping("/book/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
         try {
